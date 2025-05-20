@@ -23,16 +23,6 @@ An AI-powered system that uses deepfake voice synthesis for real-time webpage na
 ---
 
 
-
-🧪 Usage
-Open the local server (http://127.0.0.1:5000)
-
-Paste or load webpage content
-
-Click "Narrate" to hear synthesized voice
-
-Choose predefined queries for instant responses
-
 📜 License
 This project is licensed under the MIT License.
 Audio models and samples are under CC BY-NC 4.0.
