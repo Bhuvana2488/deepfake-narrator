@@ -19,11 +19,8 @@ An AI-powered system that uses deepfake voice synthesis for real-time webpage na
 - JavaScript,HTML,CSS
 - Text-to-Speech
 - NLP 
-- Web scraping or DOM parsing 
 
 ---
-
-## 📁 Project Structure
 
 
 
