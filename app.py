@@ -60,14 +60,14 @@ def generate_audio_1():
     data = request.json
     text = data.get('text', '')  # Extract text from the request body
 
-    # ElevenLabs API request headers
+    
     headers = {
         "Accept": "audio/mpeg",
         "Content-Type": "application/json",
         "xi-api-key": API_KEY
     }
 
-    # Voice settings for human-like output
+    
     payload = {
         "text": text,
         "voice_settings": {
