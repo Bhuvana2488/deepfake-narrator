@@ -3,10 +3,10 @@ import requests
 import json
 import os
 
-app = Flask(__name__)  # Corrected initialization of Flask app
+app = Flask(__name__)  
 
 # Your ElevenLabs API Key
-API_KEY = "sk_977116ea851ef52606945db7ed1fb09edb7dbc9720e1cbf5"
+API_KEY = "your_new_api_key_here"
 
 # Voice ID (Choose from ElevenLabs' default voices or your custom voice)
 voice_id = "gIzHhB1fOOHrsUzJkMBM"  # Replace with your ElevenLabs voice ID
