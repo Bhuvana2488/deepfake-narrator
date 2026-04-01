@@ -96,13 +96,15 @@ project/
 ## 📸 Results
 
 ### 🔹 Figure 1: Chatbot Response + Voice Narration
-![Chatbot Response and Voice Narration]](screenshots/fig1.png)
+![Chatbot Response and Voice Narration]](Screenshot%202026-04-01%20154855.png)
+
 The chatbot answers user queries related to AI/ML and project context using AI + retrieved knowledge.
 The system narrates webpage content (Vision/Mission) when the button is clicked
+
 ---
 
 ### 🔹 Figure 2: Voice Narration + Error Handling
-![Chatbot Response](screenshots/fig2.png)
+![Chatbot Response](Screenshot%202026-04-01%20154936.png)
 * The chatbot handles unclear queries gracefully by asking for clarification
 
 
