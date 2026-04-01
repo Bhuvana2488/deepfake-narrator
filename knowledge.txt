@@ -1,0 +1,4 @@
+This project is an AI Web Narrator built using Flask.
+It converts text to speech using ElevenLabs API.
+It also includes a chatbot powered by OpenAI API.
+The system extracts webpage content and narrates it in human-like voice.
