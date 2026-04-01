@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("extractAndListenBtn").addEventListener("click", function () {
-    console.log("Button clicked!"); // Debugging line
+  document.getElementById("extractAndListenBtn").addEventListener("click", async function () {
+    console.log("Button clicked!");
 
-    // Extract visible text from the website dynamically
+    // Extract visible text
     function getVisibleText() {
       let elements = document.body.querySelectorAll("*:not(script):not(style):not(meta):not(link)");
       let textContent = "";
@@ -24,30 +24,49 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch("/generate-audio", { // Ensure this matches the route in app.py
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ text: text }) // Send extracted content
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.blob();
-      } else {
-        return response.json().then(data => {
-          throw new Error(data.error || "Failed to generate audio");
-        });
+    try {
+      // STEP 1: Send extracted text to chatbot (OpenAI)
+      const chatResponse = await fetch("/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: text })
+      });
+
+      const chatData = await chatResponse.json();
+
+      if (!chatResponse.ok) {
+        throw new Error(chatData.error || "Chatbot failed");
       }
-    })
-    .then(blob => {
+
+      const chatbotReply = chatData.response;
+      console.log("Chatbot Reply:", chatbotReply);
+
+      // STEP 2: Convert chatbot reply to speech (ElevenLabs)
+      const ttsResponse = await fetch("/generate-audio", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: chatbotReply })
+      });
+
+      if (!ttsResponse.ok) {
+        const errorData = await ttsResponse.json();
+        throw new Error(errorData.error || "TTS failed");
+      }
+
+      const blob = await ttsResponse.blob();
+
+      // STEP 3: Play audio
       const audioUrl = URL.createObjectURL(blob);
       const audio = new Audio(audioUrl);
       audio.play();
-    })
-    .catch(error => {
+
+    } catch (error) {
       console.error("Error:", error);
       alert(error.message);
-    });
+    }
   });
 });
